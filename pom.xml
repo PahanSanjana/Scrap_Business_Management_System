@@ -1,10 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
-         https://maven.apache.org/xsd/maven-4.0.0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
 
+    <!-- Project Information -->
     <groupId>com.mycompany</groupId>
     <artifactId>scrap-management-system</artifactId>
     <version>1.0-SNAPSHOT</version>
@@ -13,6 +15,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.release>21</maven.compiler.release>
+        <javafx.version>13</javafx.version>
     </properties>
 
     <!-- Project Dependencies -->
@@ -22,14 +25,14 @@
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-controls</artifactId>
-            <version>13</version>
+            <version>${javafx.version}</version>
         </dependency>
 
         <!-- JavaFX FXML -->
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-fxml</artifactId>
-            <version>13</version>
+            <version>${javafx.version}</version>
         </dependency>
 
         <!-- SQLite Database -->
@@ -50,6 +53,7 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.13.0</version>
+
                 <configuration>
                     <release>21</release>
                 </configuration>
@@ -59,26 +63,25 @@
             <plugin>
                 <groupId>org.openjfx</groupId>
                 <artifactId>javafx-maven-plugin</artifactId>
-                <version>0.0.4</version>
+                <version>0.0.8</version>
 
                 <configuration>
                     <mainClass>
-                        com.mycompany.scrap.management.system.App
+                        com.mycompany.scrap.management.system/com.mycompany.scrap.management.system.App
                     </mainClass>
                 </configuration>
 
                 <executions>
 
-                    <!-- Default Configuration for Running -->
-                    <!-- Usage: mvn clean javafx:run -->
+                    <!-- Default JavaFX Run Configuration -->
                     <execution>
                         <id>default-cli</id>
                     </execution>
 
                     <!-- Manual Attach Debugging -->
-                    <!-- Usage: mvn clean javafx:run@debug -->
                     <execution>
                         <id>debug</id>
+
                         <configuration>
                             <options>
                                 <option>
@@ -91,6 +94,7 @@
                     <!-- Automatic IDE Debugging -->
                     <execution>
                         <id>ide-debug</id>
+
                         <configuration>
                             <options>
                                 <option>
@@ -103,6 +107,7 @@
                     <!-- Automatic IDE Profiling -->
                     <execution>
                         <id>ide-profile</id>
+
                         <configuration>
                             <options>
                                 <option>${profiler.jvmargs.arg1}</option>
@@ -115,6 +120,7 @@
                     </execution>
 
                 </executions>
+
             </plugin>
 
         </plugins>
