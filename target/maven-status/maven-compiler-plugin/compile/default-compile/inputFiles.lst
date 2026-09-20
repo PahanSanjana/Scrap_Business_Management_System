@@ -1,7 +1,12 @@
 C:\Users\LOQ\Documents\NetBeansProjects\scrap-management-system\src\main\java\com\mycompany\scrap\management\system\App.java
+C:\Users\LOQ\Documents\NetBeansProjects\scrap-management-system\src\main\java\com\mycompany\scrap\management\system\dao\UserDAO.java
 C:\Users\LOQ\Documents\NetBeansProjects\scrap-management-system\src\main\java\com\mycompany\scrap\management\system\database\DatabaseConnection.java
 C:\Users\LOQ\Documents\NetBeansProjects\scrap-management-system\src\main\java\com\mycompany\scrap\management\system\database\DatabaseInitializer.java
+C:\Users\LOQ\Documents\NetBeansProjects\scrap-management-system\src\main\java\com\mycompany\scrap\management\system\database\DatabaseSeeder.java
 C:\Users\LOQ\Documents\NetBeansProjects\scrap-management-system\src\main\java\com\mycompany\scrap\management\system\database\DatabaseTest.java
+C:\Users\LOQ\Documents\NetBeansProjects\scrap-management-system\src\main\java\com\mycompany\scrap\management\system\database\RoleTest.java
+C:\Users\LOQ\Documents\NetBeansProjects\scrap-management-system\src\main\java\com\mycompany\scrap\management\system\database\UserTableTest.java
+C:\Users\LOQ\Documents\NetBeansProjects\scrap-management-system\src\main\java\com\mycompany\scrap\management\system\model\User.java
 C:\Users\LOQ\Documents\NetBeansProjects\scrap-management-system\src\main\java\com\mycompany\scrap\management\system\PrimaryController.java
 C:\Users\LOQ\Documents\NetBeansProjects\scrap-management-system\src\main\java\com\mycompany\scrap\management\system\SecondaryController.java
 C:\Users\LOQ\Documents\NetBeansProjects\scrap-management-system\src\main\java\module-info.java

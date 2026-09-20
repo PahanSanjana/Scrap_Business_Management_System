@@ -1,4 +1,3 @@
-
 package com.mycompany.scrap.management.system.database;
 
 import java.sql.SQLException;
@@ -9,7 +8,11 @@ public class DatabaseTest {
 
         try {
 
+            // Initialize database tables
             DatabaseInitializer.initializeDatabase();
+
+            // Insert default roles
+            DatabaseSeeder.seedDefaultRoles();
 
             System.out.println(
                     "Database setup test completed successfully!"
@@ -20,13 +23,14 @@ public class DatabaseTest {
                     + DatabaseConnection.getDatabasePath()
             );
 
-        } catch (SQLException exception) {
+        } catch (SQLException e) {
 
             System.out.println(
-                    "Database setup test failed!"
+                    "Database setup failed!"
             );
 
-            exception.printStackTrace();
+            e.printStackTrace();
+
         }
     }
 }
