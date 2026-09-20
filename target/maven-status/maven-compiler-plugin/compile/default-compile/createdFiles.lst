@@ -1,8 +1,12 @@
+com\mycompany\scrap\management\system\security\AuthenticationService.class
+com\mycompany\scrap\management\system\security\PasswordTest.class
+com\mycompany\scrap\management\system\security\PasswordUtil.class
 com\mycompany\scrap\management\system\SecondaryController.class
 com\mycompany\scrap\management\system\database\DatabaseTest.class
 com\mycompany\scrap\management\system\model\User.class
 com\mycompany\scrap\management\system\database\DatabaseConnection.class
 com\mycompany\scrap\management\system\PrimaryController.class
+com\mycompany\scrap\management\system\database\UserRegistrationTest.class
 com\mycompany\scrap\management\system\database\UserTableTest.class
 module-info.class
 com\mycompany\scrap\management\system\database\DatabaseSeeder.class
