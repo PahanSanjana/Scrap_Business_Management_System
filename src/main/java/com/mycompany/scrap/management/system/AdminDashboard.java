@@ -203,11 +203,14 @@ public class AdminDashboard {
 
         // Feature button actions
         materialButton.setOnAction(event -> {
-            showInformation(
-                    "Material Management",
-                    "This feature will be implemented next."
+
+    CategoryManagementScreen categoryScreen =
+            new CategoryManagementScreen(
+                    authenticatedUser
             );
-        });
+
+    categoryScreen.show(stage);
+});
 
         purchasingButton.setOnAction(event -> {
             showInformation(
