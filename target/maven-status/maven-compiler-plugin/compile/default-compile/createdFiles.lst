@@ -5,6 +5,7 @@ com\mycompany\scrap\management\system\database\DatabaseTest.class
 com\mycompany\scrap\management\system\LoginScreen.class
 com\mycompany\scrap\management\system\model\User.class
 com\mycompany\scrap\management\system\database\DatabaseConnection.class
+com\mycompany\scrap\management\system\AdminDashboard.class
 com\mycompany\scrap\management\system\database\UserRegistrationTest.class
 com\mycompany\scrap\management\system\database\UserTableTest.class
 module-info.class

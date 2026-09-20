@@ -240,22 +240,30 @@ public class LoginScreen {
 
         if (authenticatedUser != null) {
 
-            showSuccessMessage(
-                    "Login successful. Welcome, "
-                            + authenticatedUser.getFullName()
-                            + "!"
-            );
+    /*
+     * Admin role ID is 1.
+     *
+     * Currently, only the Admin dashboard
+     * is enabled in this project.
+     */
+    if (authenticatedUser.getRoleId() == 1) {
 
-            /*
-             * Dashboard navigation will be added
-             * in the next development step.
-             */
-            System.out.println(
-                    "Authenticated user role ID: "
-                            + authenticatedUser.getRoleId()
-            );
+        AdminDashboard adminDashboard =
+                new AdminDashboard(authenticatedUser);
 
-        } else {
+        adminDashboard.show(stage);
+
+    } else {
+
+        showErrorMessage(
+                "Only Admin access is enabled currently."
+        );
+
+        passwordField.clear();
+        passwordField.requestFocus();
+    }
+
+} else {
 
             showErrorMessage(
                     "Invalid username or password."
