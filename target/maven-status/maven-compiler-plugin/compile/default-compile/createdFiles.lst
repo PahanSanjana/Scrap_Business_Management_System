@@ -1,0 +1,4 @@
+com\mycompany\scrap\management\system\App.class
+com\mycompany\scrap\management\system\PrimaryController.class
+module-info.class
+com\mycompany\scrap\management\system\SecondaryController.class
