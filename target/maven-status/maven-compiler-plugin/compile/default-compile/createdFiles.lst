@@ -1,4 +1,7 @@
-com\mycompany\scrap\management\system\App.class
+com\mycompany\scrap\management\system\database\DatabaseConnection.class
 com\mycompany\scrap\management\system\PrimaryController.class
 module-info.class
+com\mycompany\scrap\management\system\App.class
 com\mycompany\scrap\management\system\SecondaryController.class
+com\mycompany\scrap\management\system\database\DatabaseInitializer.class
+com\mycompany\scrap\management\system\database\DatabaseTest.class
