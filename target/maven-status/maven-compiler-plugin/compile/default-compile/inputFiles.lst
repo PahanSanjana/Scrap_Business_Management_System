@@ -5,6 +5,7 @@ C:\Users\LOQ\Documents\NetBeansProjects\scrap-management-system\src\main\java\co
 C:\Users\LOQ\Documents\NetBeansProjects\scrap-management-system\src\main\java\com\mycompany\scrap\management\system\dao\CategoryDAO.java
 C:\Users\LOQ\Documents\NetBeansProjects\scrap-management-system\src\main\java\com\mycompany\scrap\management\system\dao\CustomerDAO.java
 C:\Users\LOQ\Documents\NetBeansProjects\scrap-management-system\src\main\java\com\mycompany\scrap\management\system\dao\MaterialDAO.java
+C:\Users\LOQ\Documents\NetBeansProjects\scrap-management-system\src\main\java\com\mycompany\scrap\management\system\dao\PurchaseDAO.java
 C:\Users\LOQ\Documents\NetBeansProjects\scrap-management-system\src\main\java\com\mycompany\scrap\management\system\dao\SupplierDAO.java
 C:\Users\LOQ\Documents\NetBeansProjects\scrap-management-system\src\main\java\com\mycompany\scrap\management\system\dao\UserDAO.java
 C:\Users\LOQ\Documents\NetBeansProjects\scrap-management-system\src\main\java\com\mycompany\scrap\management\system\database\AuthenticationTest.java
@@ -20,8 +21,11 @@ C:\Users\LOQ\Documents\NetBeansProjects\scrap-management-system\src\main\java\co
 C:\Users\LOQ\Documents\NetBeansProjects\scrap-management-system\src\main\java\com\mycompany\scrap\management\system\model\Category.java
 C:\Users\LOQ\Documents\NetBeansProjects\scrap-management-system\src\main\java\com\mycompany\scrap\management\system\model\Customer.java
 C:\Users\LOQ\Documents\NetBeansProjects\scrap-management-system\src\main\java\com\mycompany\scrap\management\system\model\Material.java
+C:\Users\LOQ\Documents\NetBeansProjects\scrap-management-system\src\main\java\com\mycompany\scrap\management\system\model\Purchase.java
+C:\Users\LOQ\Documents\NetBeansProjects\scrap-management-system\src\main\java\com\mycompany\scrap\management\system\model\PurchaseItem.java
 C:\Users\LOQ\Documents\NetBeansProjects\scrap-management-system\src\main\java\com\mycompany\scrap\management\system\model\Supplier.java
 C:\Users\LOQ\Documents\NetBeansProjects\scrap-management-system\src\main\java\com\mycompany\scrap\management\system\model\User.java
+C:\Users\LOQ\Documents\NetBeansProjects\scrap-management-system\src\main\java\com\mycompany\scrap\management\system\PurchasingManagementScreen.java
 C:\Users\LOQ\Documents\NetBeansProjects\scrap-management-system\src\main\java\com\mycompany\scrap\management\system\security\AuthenticationService.java
 C:\Users\LOQ\Documents\NetBeansProjects\scrap-management-system\src\main\java\com\mycompany\scrap\management\system\security\PasswordTest.java
 C:\Users\LOQ\Documents\NetBeansProjects\scrap-management-system\src\main\java\com\mycompany\scrap\management\system\security\PasswordUtil.java

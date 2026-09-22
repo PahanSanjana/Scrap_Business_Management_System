@@ -285,13 +285,14 @@ public class AdminDashboard {
         // =====================================================
 
         purchasingButton.setOnAction(event -> {
-
-            showInformation(
-                    "Purchasing Management",
-                    "This feature will be implemented later."
+    PurchasingManagementScreen purchasingScreen =
+            new PurchasingManagementScreen(
+                    stage,
+                    authenticatedUser
             );
-        });
 
+    purchasingScreen.show();
+});
         // =====================================================
         // INVENTORY MANAGEMENT ACTION
         // =====================================================

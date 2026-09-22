@@ -1,3 +1,4 @@
+
 package com.mycompany.scrap.management.system.database;
 
 import java.sql.Connection;
@@ -47,6 +48,10 @@ public final class DatabaseInitializer {
                 createCustomersTable(connection);
 
                 createSuppliersTable(connection);
+
+                createPurchasesTable(connection);
+
+                createPurchaseItemsTable(connection);
 
                 // Create database indexes
                 createDatabaseIndexes(connection);
@@ -316,6 +321,97 @@ public final class DatabaseInitializer {
     }
 
     // =========================================================
+    // CREATE PURCHASES TABLE
+    // =========================================================
+
+    private static void createPurchasesTable(
+            Connection connection
+    ) throws SQLException {
+
+        String sql = """
+                CREATE TABLE IF NOT EXISTS purchases (
+                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+
+                    purchase_code TEXT NOT NULL UNIQUE,
+
+                    supplier_id INTEGER NOT NULL,
+
+                    purchase_date TEXT NOT NULL,
+
+                    invoice_number TEXT,
+
+                    payment_method TEXT,
+
+                    payment_status TEXT NOT NULL
+                        DEFAULT 'PENDING',
+
+                    total_amount REAL NOT NULL
+                        DEFAULT 0,
+
+                    notes TEXT,
+
+                    created_by INTEGER,
+
+                    created_at TEXT NOT NULL
+                        DEFAULT CURRENT_TIMESTAMP,
+
+                    updated_at TEXT,
+
+                    FOREIGN KEY (supplier_id)
+                        REFERENCES suppliers(id),
+
+                    FOREIGN KEY (created_by)
+                        REFERENCES users(id)
+                );
+                """;
+
+        executeSql(
+                connection,
+                sql
+        );
+    }
+
+    // =========================================================
+    // CREATE PURCHASE ITEMS TABLE
+    // =========================================================
+
+    private static void createPurchaseItemsTable(
+            Connection connection
+    ) throws SQLException {
+
+        String sql = """
+                CREATE TABLE IF NOT EXISTS purchase_items (
+                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+
+                    purchase_id INTEGER NOT NULL,
+
+                    material_id INTEGER NOT NULL,
+
+                    quantity REAL NOT NULL,
+
+                    unit_price REAL NOT NULL,
+
+                    total_price REAL NOT NULL,
+
+                    created_at TEXT NOT NULL
+                        DEFAULT CURRENT_TIMESTAMP,
+
+                    FOREIGN KEY (purchase_id)
+                        REFERENCES purchases(id)
+                        ON DELETE CASCADE,
+
+                    FOREIGN KEY (material_id)
+                        REFERENCES materials(id)
+                );
+                """;
+
+        executeSql(
+                connection,
+                sql
+        );
+    }
+
+    // =========================================================
     // CREATE DATABASE INDEXES
     // =========================================================
 
@@ -393,6 +489,54 @@ public final class DatabaseInitializer {
         executeSql(
                 connection,
                 supplierActiveIndex
+        );
+
+        // Index for faster purchase supplier searches
+        String purchaseSupplierIndex = """
+                CREATE INDEX IF NOT EXISTS
+                idx_purchases_supplier_id
+                ON purchases(supplier_id);
+                """;
+
+        executeSql(
+                connection,
+                purchaseSupplierIndex
+        );
+
+        // Index for faster purchase date searches
+        String purchaseDateIndex = """
+                CREATE INDEX IF NOT EXISTS
+                idx_purchases_purchase_date
+                ON purchases(purchase_date);
+                """;
+
+        executeSql(
+                connection,
+                purchaseDateIndex
+        );
+
+        // Index for faster purchase item searches
+        String purchaseItemPurchaseIndex = """
+                CREATE INDEX IF NOT EXISTS
+                idx_purchase_items_purchase_id
+                ON purchase_items(purchase_id);
+                """;
+
+        executeSql(
+                connection,
+                purchaseItemPurchaseIndex
+        );
+
+        // Index for faster material purchase searches
+        String purchaseItemMaterialIndex = """
+                CREATE INDEX IF NOT EXISTS
+                idx_purchase_items_material_id
+                ON purchase_items(material_id);
+                """;
+
+        executeSql(
+                connection,
+                purchaseItemMaterialIndex
         );
     }
 
