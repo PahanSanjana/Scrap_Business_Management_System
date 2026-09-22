@@ -536,4 +536,99 @@ public class PurchaseDAO {
             return statement.executeUpdate() > 0;
         }
     }
+    
+    
+    // =========================================================
+    // UPDATE PURCHASE WITH ITEMS
+    // =========================================================
+
+    public boolean updatePurchase(
+            Purchase purchase,
+            List<PurchaseItem> purchaseItems
+    ) throws SQLException {
+
+        String updatePurchaseSql = """
+                UPDATE purchases
+                SET purchase_code = ?,
+                    supplier_id = ?,
+                    purchase_date = ?,
+                    invoice_number = ?,
+                    payment_method = ?,
+                    payment_status = ?,
+                    total_amount = ?,
+                    notes = ?,
+                    updated_at = CURRENT_TIMESTAMP
+                WHERE id = ?
+                """;
+
+        String deleteItemsSql = """
+                DELETE FROM purchase_items
+                WHERE purchase_id = ?
+                """;
+
+        String insertItemSql = """
+                INSERT INTO purchase_items (
+                    purchase_id,
+                    material_id,
+                    quantity,
+                    unit_price,
+                    total_price
+                )
+                VALUES (?, ?, ?, ?, ?)
+                """;
+
+        try (Connection connection = DatabaseConnection.getConnection()) {
+            connection.setAutoCommit(false);
+
+            try {
+                try (PreparedStatement statement =
+                             connection.prepareStatement(updatePurchaseSql)) {
+
+                    statement.setString(1, purchase.getPurchaseCode());
+                    statement.setInt(2, purchase.getSupplierId());
+                    statement.setString(3, purchase.getPurchaseDate());
+                    statement.setString(4, purchase.getInvoiceNumber());
+                    statement.setString(5, purchase.getPaymentMethod());
+                    statement.setString(6, purchase.getPaymentStatus());
+                    statement.setDouble(7, purchase.getTotalAmount());
+                    statement.setString(8, purchase.getNotes());
+                    statement.setInt(9, purchase.getId());
+
+                    if (statement.executeUpdate() == 0) {
+                        connection.rollback();
+                        return false;
+                    }
+                }
+
+                try (PreparedStatement statement =
+                             connection.prepareStatement(deleteItemsSql)) {
+                    statement.setInt(1, purchase.getId());
+                    statement.executeUpdate();
+                }
+
+                try (PreparedStatement statement =
+                             connection.prepareStatement(insertItemSql)) {
+
+                    for (PurchaseItem item : purchaseItems) {
+                        statement.setInt(1, purchase.getId());
+                        statement.setInt(2, item.getMaterialId());
+                        statement.setDouble(3, item.getQuantity());
+                        statement.setDouble(4, item.getUnitPrice());
+                        statement.setDouble(5, item.getTotalPrice());
+                        statement.addBatch();
+                    }
+
+                    statement.executeBatch();
+                }
+
+                connection.commit();
+                return true;
+
+            } catch (SQLException ex) {
+                connection.rollback();
+                throw ex;
+            }
+        }
+    }
+
 }
