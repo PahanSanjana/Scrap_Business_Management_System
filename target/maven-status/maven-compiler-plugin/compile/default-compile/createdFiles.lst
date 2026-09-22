@@ -1,9 +1,11 @@
 com\mycompany\scrap\management\system\security\AuthenticationService.class
 com\mycompany\scrap\management\system\MaterialManagementScreen$2.class
+com\mycompany\scrap\management\system\dao\SupplierDAO.class
 com\mycompany\scrap\management\system\security\PasswordUtil.class
 com\mycompany\scrap\management\system\CategoryManagementScreen$3.class
 com\mycompany\scrap\management\system\database\DatabaseTest.class
 com\mycompany\scrap\management\system\CategoryManagementScreen.class
+com\mycompany\scrap\management\system\SupplierManagementScreen.class
 com\mycompany\scrap\management\system\database\DatabaseConnection.class
 com\mycompany\scrap\management\system\dao\MaterialDAO.class
 module-info.class
@@ -16,6 +18,7 @@ com\mycompany\scrap\management\system\MaterialManagementScreen.class
 com\mycompany\scrap\management\system\security\PasswordTest.class
 com\mycompany\scrap\management\system\MaterialManagementScreen$3.class
 com\mycompany\scrap\management\system\dao\CategoryDAO.class
+com\mycompany\scrap\management\system\SupplierManagementScreen$1.class
 com\mycompany\scrap\management\system\CategoryManagementScreen$2.class
 com\mycompany\scrap\management\system\model\Material.class
 com\mycompany\scrap\management\system\LoginScreen.class
@@ -31,3 +34,4 @@ com\mycompany\scrap\management\system\CategoryManagementScreen$ColumnConstraints
 com\mycompany\scrap\management\system\App.class
 com\mycompany\scrap\management\system\database\AuthenticationTest.class
 com\mycompany\scrap\management\system\MaterialManagementScreen$1.class
+com\mycompany\scrap\management\system\model\Supplier.class

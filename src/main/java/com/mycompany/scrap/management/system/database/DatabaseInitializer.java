@@ -46,6 +46,8 @@ public final class DatabaseInitializer {
 
                 createCustomersTable(connection);
 
+                createSuppliersTable(connection);
+
                 // Create database indexes
                 createDatabaseIndexes(connection);
 
@@ -272,6 +274,48 @@ public final class DatabaseInitializer {
     }
 
     // =========================================================
+    // CREATE SUPPLIERS TABLE
+    // =========================================================
+
+    private static void createSuppliersTable(
+            Connection connection
+    ) throws SQLException {
+
+        String sql = """
+                CREATE TABLE IF NOT EXISTS suppliers (
+                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+
+                    supplier_code TEXT NOT NULL UNIQUE,
+
+                    supplier_name TEXT NOT NULL,
+
+                    contact_person TEXT,
+
+                    phone_number TEXT NOT NULL,
+
+                    email TEXT,
+
+                    address TEXT,
+
+                    payment_terms TEXT,
+
+                    is_active INTEGER NOT NULL
+                        DEFAULT 1,
+
+                    created_at TEXT NOT NULL
+                        DEFAULT CURRENT_TIMESTAMP,
+
+                    updated_at TEXT
+                );
+                """;
+
+        executeSql(
+                connection,
+                sql
+        );
+    }
+
+    // =========================================================
     // CREATE DATABASE INDEXES
     // =========================================================
 
@@ -337,6 +381,18 @@ public final class DatabaseInitializer {
         executeSql(
                 connection,
                 customerActiveIndex
+        );
+
+        // Index for faster supplier status searches
+        String supplierActiveIndex = """
+                CREATE INDEX IF NOT EXISTS
+                idx_suppliers_is_active
+                ON suppliers(is_active);
+                """;
+
+        executeSql(
+                connection,
+                supplierActiveIndex
         );
     }
 

@@ -310,11 +310,14 @@ public class AdminDashboard {
 
         supplierButton.setOnAction(event -> {
 
-            showInformation(
-                    "Supplier Management",
-                    "This feature will be implemented later."
+    SupplierManagementScreen supplierScreen =
+            new SupplierManagementScreen(
+                    stage,
+                    authenticatedUser
             );
-        });
+
+    supplierScreen.show();
+});
 
         // =====================================================
         // CUSTOMER MANAGEMENT ACTION
