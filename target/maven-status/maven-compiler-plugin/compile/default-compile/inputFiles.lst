@@ -1,7 +1,9 @@
 C:\Users\LOQ\Documents\NetBeansProjects\scrap-management-system\src\main\java\com\mycompany\scrap\management\system\AdminDashboard.java
 C:\Users\LOQ\Documents\NetBeansProjects\scrap-management-system\src\main\java\com\mycompany\scrap\management\system\App.java
 C:\Users\LOQ\Documents\NetBeansProjects\scrap-management-system\src\main\java\com\mycompany\scrap\management\system\CategoryManagementScreen.java
+C:\Users\LOQ\Documents\NetBeansProjects\scrap-management-system\src\main\java\com\mycompany\scrap\management\system\CustomerManagementScreen.java
 C:\Users\LOQ\Documents\NetBeansProjects\scrap-management-system\src\main\java\com\mycompany\scrap\management\system\dao\CategoryDAO.java
+C:\Users\LOQ\Documents\NetBeansProjects\scrap-management-system\src\main\java\com\mycompany\scrap\management\system\dao\CustomerDAO.java
 C:\Users\LOQ\Documents\NetBeansProjects\scrap-management-system\src\main\java\com\mycompany\scrap\management\system\dao\MaterialDAO.java
 C:\Users\LOQ\Documents\NetBeansProjects\scrap-management-system\src\main\java\com\mycompany\scrap\management\system\dao\SupplierDAO.java
 C:\Users\LOQ\Documents\NetBeansProjects\scrap-management-system\src\main\java\com\mycompany\scrap\management\system\dao\UserDAO.java
@@ -16,6 +18,7 @@ C:\Users\LOQ\Documents\NetBeansProjects\scrap-management-system\src\main\java\co
 C:\Users\LOQ\Documents\NetBeansProjects\scrap-management-system\src\main\java\com\mycompany\scrap\management\system\LoginScreen.java
 C:\Users\LOQ\Documents\NetBeansProjects\scrap-management-system\src\main\java\com\mycompany\scrap\management\system\MaterialManagementScreen.java
 C:\Users\LOQ\Documents\NetBeansProjects\scrap-management-system\src\main\java\com\mycompany\scrap\management\system\model\Category.java
+C:\Users\LOQ\Documents\NetBeansProjects\scrap-management-system\src\main\java\com\mycompany\scrap\management\system\model\Customer.java
 C:\Users\LOQ\Documents\NetBeansProjects\scrap-management-system\src\main\java\com\mycompany\scrap\management\system\model\Material.java
 C:\Users\LOQ\Documents\NetBeansProjects\scrap-management-system\src\main\java\com\mycompany\scrap\management\system\model\Supplier.java
 C:\Users\LOQ\Documents\NetBeansProjects\scrap-management-system\src\main\java\com\mycompany\scrap\management\system\model\User.java

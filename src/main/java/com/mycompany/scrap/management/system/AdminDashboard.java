@@ -323,13 +323,16 @@ public class AdminDashboard {
         // CUSTOMER MANAGEMENT ACTION
         // =====================================================
 
-        customerButton.setOnAction(event -> {
-
-            showInformation(
-                    "Customer Management",
-                    "This feature will be implemented later."
+        
+customerButton.setOnAction(event -> {
+    CustomerManagementScreen customerScreen =
+            new CustomerManagementScreen(
+                    stage,
+                    authenticatedUser
             );
-        });
+
+    customerScreen.show();
+});
 
         // =====================================================
         // SALES MANAGEMENT ACTION

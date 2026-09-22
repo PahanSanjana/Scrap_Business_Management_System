@@ -1,8 +1,10 @@
 com\mycompany\scrap\management\system\security\AuthenticationService.class
 com\mycompany\scrap\management\system\MaterialManagementScreen$2.class
+com\mycompany\scrap\management\system\CustomerManagementScreen.class
 com\mycompany\scrap\management\system\dao\SupplierDAO.class
 com\mycompany\scrap\management\system\security\PasswordUtil.class
 com\mycompany\scrap\management\system\CategoryManagementScreen$3.class
+com\mycompany\scrap\management\system\model\Customer.class
 com\mycompany\scrap\management\system\database\DatabaseTest.class
 com\mycompany\scrap\management\system\CategoryManagementScreen.class
 com\mycompany\scrap\management\system\SupplierManagementScreen.class
@@ -20,6 +22,7 @@ com\mycompany\scrap\management\system\MaterialManagementScreen$3.class
 com\mycompany\scrap\management\system\dao\CategoryDAO.class
 com\mycompany\scrap\management\system\SupplierManagementScreen$1.class
 com\mycompany\scrap\management\system\CategoryManagementScreen$2.class
+com\mycompany\scrap\management\system\dao\CustomerDAO.class
 com\mycompany\scrap\management\system\model\Material.class
 com\mycompany\scrap\management\system\LoginScreen.class
 com\mycompany\scrap\management\system\model\User.class
