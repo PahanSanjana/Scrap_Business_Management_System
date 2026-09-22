@@ -13,6 +13,7 @@ com\mycompany\scrap\management\system\dao\MaterialDAO.class
 module-info.class
 com\mycompany\scrap\management\system\database\DatabaseSeeder.class
 com\mycompany\scrap\management\system\database\RoleTest.class
+com\mycompany\scrap\management\system\CustomerManagementScreen$1.class
 com\mycompany\scrap\management\system\database\DatabaseInitializer.class
 com\mycompany\scrap\management\system\MaterialManagementScreen$5.class
 com\mycompany\scrap\management\system\CategoryManagementScreen$4.class
