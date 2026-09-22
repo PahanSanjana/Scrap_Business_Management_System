@@ -20,5 +20,6 @@ com\mycompany\scrap\management\system\model\Category.class
 com\mycompany\scrap\management\system\database\UserRegistrationTest.class
 com\mycompany\scrap\management\system\database\UserTableTest.class
 com\mycompany\scrap\management\system\dao\UserDAO.class
+com\mycompany\scrap\management\system\CategoryManagementScreen$ColumnConstraintsHelper.class
 com\mycompany\scrap\management\system\App.class
 com\mycompany\scrap\management\system\database\AuthenticationTest.class

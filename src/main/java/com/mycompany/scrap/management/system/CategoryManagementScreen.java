@@ -1,4 +1,3 @@
-
 package com.mycompany.scrap.management.system;
 
 import com.mycompany.scrap.management.system.dao.CategoryDAO;
@@ -19,6 +18,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
@@ -26,7 +26,10 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 
 import javafx.scene.paint.Color;
@@ -74,27 +77,19 @@ public class CategoryManagementScreen {
     // CONSTRUCTOR
     // =========================================================
 
-    public CategoryManagementScreen(
-            User authenticatedUser
-    ) {
+    public CategoryManagementScreen(User authenticatedUser) {
 
-        this.authenticatedUser =
-                authenticatedUser;
+        this.authenticatedUser = authenticatedUser;
 
-        this.categoryDAO =
-                new CategoryDAO();
+        this.categoryDAO = new CategoryDAO();
 
-        this.categoryTable =
-                new TableView<>();
+        this.categoryTable = new TableView<>();
 
-        this.categoryNameField =
-                new TextField();
+        this.categoryNameField = new TextField();
 
-        this.descriptionField =
-                new TextField();
+        this.descriptionField = new TextField();
 
-        this.searchField =
-                new TextField();
+        this.searchField = new TextField();
 
         this.selectedCategoryLabel =
                 new Label("No category selected");
@@ -131,28 +126,34 @@ public class CategoryManagementScreen {
                 "Enter category name"
         );
 
-        categoryNameField.setPrefHeight(38);
+        categoryNameField.setPrefHeight(40);
 
-        categoryNameField.setPrefWidth(280);
+        categoryNameField.setMaxWidth(
+                Double.MAX_VALUE
+        );
 
         descriptionField.setPromptText(
                 "Enter category description"
         );
 
-        descriptionField.setPrefHeight(38);
+        descriptionField.setPrefHeight(40);
 
-        descriptionField.setPrefWidth(280);
-
-        searchField.setPromptText(
-                "Search category..."
+        descriptionField.setMaxWidth(
+                Double.MAX_VALUE
         );
 
-        searchField.setPrefHeight(38);
+        searchField.setPromptText(
+                "Search by category name or description"
+        );
 
-        searchField.setPrefWidth(280);
+        searchField.setPrefHeight(40);
+
+        searchField.setMaxWidth(
+                Double.MAX_VALUE
+        );
 
         selectedCategoryLabel.setStyle(
-                "-fx-text-fill: #374151;"
+                "-fx-text-fill: #475569;"
                 + "-fx-font-size: 13px;"
         );
     }
@@ -163,58 +164,68 @@ public class CategoryManagementScreen {
 
     private void configureButtons() {
 
-        addButton.setPrefHeight(38);
+        addButton.setPrefHeight(40);
 
         addButton.setPrefWidth(150);
 
-        updateButton.setPrefHeight(38);
+        updateButton.setPrefHeight(40);
 
-        updateButton.setPrefWidth(160);
+        updateButton.setPrefWidth(165);
 
-        clearButton.setPrefHeight(38);
+        clearButton.setPrefHeight(40);
 
         clearButton.setPrefWidth(100);
 
-        activateButton.setPrefHeight(38);
+        activateButton.setPrefHeight(40);
 
-        activateButton.setPrefWidth(110);
+        activateButton.setPrefWidth(125);
 
-        deactivateButton.setPrefHeight(38);
+        deactivateButton.setPrefHeight(40);
 
-        deactivateButton.setPrefWidth(120);
+        deactivateButton.setPrefWidth(135);
 
         addButton.setStyle(
                 "-fx-background-color: #166534;"
                 + "-fx-text-fill: white;"
+                + "-fx-font-size: 13px;"
                 + "-fx-font-weight: bold;"
+                + "-fx-background-radius: 6px;"
                 + "-fx-cursor: hand;"
         );
 
         updateButton.setStyle(
                 "-fx-background-color: #1d4ed8;"
                 + "-fx-text-fill: white;"
+                + "-fx-font-size: 13px;"
                 + "-fx-font-weight: bold;"
+                + "-fx-background-radius: 6px;"
                 + "-fx-cursor: hand;"
         );
 
         clearButton.setStyle(
-                "-fx-background-color: #6b7280;"
+                "-fx-background-color: #64748b;"
                 + "-fx-text-fill: white;"
+                + "-fx-font-size: 13px;"
                 + "-fx-font-weight: bold;"
+                + "-fx-background-radius: 6px;"
                 + "-fx-cursor: hand;"
         );
 
         activateButton.setStyle(
                 "-fx-background-color: #15803d;"
                 + "-fx-text-fill: white;"
+                + "-fx-font-size: 13px;"
                 + "-fx-font-weight: bold;"
+                + "-fx-background-radius: 6px;"
                 + "-fx-cursor: hand;"
         );
 
         deactivateButton.setStyle(
                 "-fx-background-color: #b91c1c;"
                 + "-fx-text-fill: white;"
+                + "-fx-font-size: 13px;"
                 + "-fx-font-weight: bold;"
+                + "-fx-background-radius: 6px;"
                 + "-fx-cursor: hand;"
         );
 
@@ -266,6 +277,8 @@ public class CategoryManagementScreen {
 
         categoryTable.setPrefHeight(430);
 
+        categoryTable.setMinHeight(300);
+
         categoryTable.setColumnResizePolicy(
                 TableView.CONSTRAINED_RESIZE_POLICY
         );
@@ -277,7 +290,9 @@ public class CategoryManagementScreen {
         categoryTable.setStyle(
                 "-fx-background-color: white;"
                 + "-fx-control-inner-background: white;"
-                + "-fx-table-cell-border-color: #e5e7eb;"
+                + "-fx-table-cell-border-color: #e2e8f0;"
+                + "-fx-border-color: #e2e8f0;"
+                + "-fx-border-radius: 6px;"
         );
 
         // -----------------------------------------------------
@@ -288,6 +303,10 @@ public class CategoryManagementScreen {
                 new TableColumn<>("ID");
 
         idColumn.setPrefWidth(70);
+
+        idColumn.setMinWidth(60);
+
+        idColumn.setMaxWidth(90);
 
         idColumn.setCellValueFactory(
                 cellData ->
@@ -383,7 +402,7 @@ public class CategoryManagementScreen {
         TableColumn<Category, String> descriptionColumn =
                 new TableColumn<>("Description");
 
-        descriptionColumn.setPrefWidth(300);
+        descriptionColumn.setPrefWidth(350);
 
         descriptionColumn.setCellValueFactory(
                 cellData ->
@@ -431,6 +450,10 @@ public class CategoryManagementScreen {
 
         statusColumn.setPrefWidth(130);
 
+        statusColumn.setMinWidth(110);
+
+        statusColumn.setMaxWidth(160);
+
         statusColumn.setCellValueFactory(
                 cellData ->
                         new SimpleStringProperty(
@@ -474,7 +497,8 @@ public class CategoryManagementScreen {
                         }
 
                         setStyle(
-                                "-fx-font-weight: bold;"
+                                "-fx-font-size: 13px;"
+                                + "-fx-font-weight: bold;"
                                 + "-fx-alignment: CENTER;"
                         );
                     }
@@ -531,37 +555,82 @@ public class CategoryManagementScreen {
                 new BorderPane();
 
         root.setStyle(
-                "-fx-background-color: #f3f4f6;"
+                "-fx-background-color: #f1f5f9;"
         );
 
-        VBox content =
-                new VBox(15);
+        // =====================================================
+        // HEADER
+        // =====================================================
 
-        content.setPadding(
-                new Insets(25)
+        HBox header =
+                new HBox();
+
+        header.setPadding(
+                new Insets(20, 28, 20, 28)
         );
 
-        content.setAlignment(
-                Pos.TOP_LEFT
+        header.setAlignment(
+                Pos.CENTER_LEFT
         );
 
-        // -----------------------------------------------------
-        // BACK BUTTON
-        // -----------------------------------------------------
+        header.setSpacing(15);
+
+        header.setStyle(
+                "-fx-background-color: #0f172a;"
+        );
+
+        VBox headingBox =
+                new VBox(4);
+
+        Label titleLabel =
+                new Label(
+                        "Category Management"
+                );
+
+        titleLabel.setStyle(
+                "-fx-font-size: 25px;"
+                + "-fx-font-weight: bold;"
+                + "-fx-text-fill: white;"
+        );
+
+        Label subtitleLabel =
+                new Label(
+                        "Manage scrap material categories"
+                );
+
+        subtitleLabel.setStyle(
+                "-fx-font-size: 13px;"
+                + "-fx-text-fill: #cbd5e1;"
+        );
+
+        headingBox.getChildren().addAll(
+                titleLabel,
+                subtitleLabel
+        );
+
+        Region headerSpacer =
+                new Region();
+
+        HBox.setHgrow(
+                headerSpacer,
+                Priority.ALWAYS
+        );
 
         Button backButton =
                 new Button(
-                        "← Back to Admin Dashboard"
+                        "← Back to Dashboard"
                 );
 
         backButton.setPrefHeight(38);
 
-        backButton.setPrefWidth(230);
+        backButton.setPrefWidth(180);
 
         backButton.setStyle(
-                "-fx-background-color: #1e3a8a;"
+                "-fx-background-color: #334155;"
                 + "-fx-text-fill: white;"
+                + "-fx-font-size: 13px;"
                 + "-fx-font-weight: bold;"
+                + "-fx-background-radius: 6px;"
                 + "-fx-cursor: hand;"
         );
 
@@ -575,47 +644,87 @@ public class CategoryManagementScreen {
             dashboard.show(stage);
         });
 
-        // -----------------------------------------------------
-        // TITLE
-        // -----------------------------------------------------
-
-        Label titleLabel =
-                new Label(
-                        "Category Management"
-                );
-
-        titleLabel.setStyle(
-                "-fx-font-size: 26px;"
-                + "-fx-font-weight: bold;"
-                + "-fx-text-fill: #111827;"
+        header.getChildren().addAll(
+                headingBox,
+                headerSpacer,
+                backButton
         );
 
-        Label subtitleLabel =
-                new Label(
-                        "Add, update, search, and manage scrap material categories"
-                );
+        root.setTop(header);
 
-        subtitleLabel.setStyle(
-                "-fx-font-size: 14px;"
-                + "-fx-text-fill: #6b7280;"
+        // =====================================================
+        // MAIN CONTENT
+        // =====================================================
+
+        VBox mainContent =
+                new VBox(18);
+
+        mainContent.setPadding(
+                new Insets(25, 28, 28, 28)
         );
 
-        // -----------------------------------------------------
-        // CATEGORY FORM
-        // -----------------------------------------------------
+        mainContent.setFillWidth(true);
 
-        VBox formBox =
-                new VBox(8);
+        // =====================================================
+        // CATEGORY FORM CARD
+        // =====================================================
 
-        formBox.setPadding(
-                new Insets(18)
+        VBox formCard =
+                new VBox(15);
+
+        formCard.setPadding(
+                new Insets(20)
         );
 
-        formBox.setStyle(
+        formCard.setMaxWidth(
+                Double.MAX_VALUE
+        );
+
+        formCard.setStyle(
                 "-fx-background-color: white;"
-                + "-fx-background-radius: 8;"
-                + "-fx-border-color: #e5e7eb;"
-                + "-fx-border-radius: 8;"
+                + "-fx-background-radius: 10px;"
+                + "-fx-border-color: #e2e8f0;"
+                + "-fx-border-radius: 10px;"
+        );
+
+        Label formTitle =
+                new Label(
+                        "Category Details"
+                );
+
+        formTitle.setStyle(
+                "-fx-font-size: 17px;"
+                + "-fx-font-weight: bold;"
+                + "-fx-text-fill: #0f172a;"
+        );
+
+        Label formSubtitle =
+                new Label(
+                        "Create a new category or update an existing category"
+                );
+
+        formSubtitle.setStyle(
+                "-fx-font-size: 12px;"
+                + "-fx-text-fill: #64748b;"
+        );
+
+        // -----------------------------------------------------
+        // FORM GRID
+        // -----------------------------------------------------
+
+        GridPane formGrid =
+                new GridPane();
+
+        formGrid.setHgap(18);
+
+        formGrid.setVgap(8);
+
+        formGrid.setMaxWidth(
+                Double.MAX_VALUE
+        );
+
+        ColumnConstraintsHelper.configureFormColumns(
+                formGrid
         );
 
         Label categoryNameLabel =
@@ -624,8 +733,9 @@ public class CategoryManagementScreen {
                 );
 
         categoryNameLabel.setStyle(
-                "-fx-font-weight: bold;"
-                + "-fx-text-fill: #374151;"
+                "-fx-font-size: 13px;"
+                + "-fx-font-weight: bold;"
+                + "-fx-text-fill: #334155;"
         );
 
         Label descriptionLabel =
@@ -634,33 +744,48 @@ public class CategoryManagementScreen {
                 );
 
         descriptionLabel.setStyle(
-                "-fx-font-weight: bold;"
-                + "-fx-text-fill: #374151;"
+                "-fx-font-size: 13px;"
+                + "-fx-font-weight: bold;"
+                + "-fx-text-fill: #334155;"
         );
 
-        HBox nameBox =
-                new HBox(10);
-
-        nameBox.setAlignment(
-                Pos.CENTER_LEFT
-        );
-
-        nameBox.getChildren().addAll(
+        formGrid.add(
                 categoryNameLabel,
-                categoryNameField
+                0,
+                0
         );
 
-        HBox descriptionBox =
-                new HBox(10);
-
-        descriptionBox.setAlignment(
-                Pos.CENTER_LEFT
-        );
-
-        descriptionBox.getChildren().addAll(
+        formGrid.add(
                 descriptionLabel,
-                descriptionField
+                1,
+                0
         );
+
+        formGrid.add(
+                categoryNameField,
+                0,
+                1
+        );
+
+        formGrid.add(
+                descriptionField,
+                1,
+                1
+        );
+
+        GridPane.setHgrow(
+                categoryNameField,
+                Priority.ALWAYS
+        );
+
+        GridPane.setHgrow(
+                descriptionField,
+                Priority.ALWAYS
+        );
+
+        // -----------------------------------------------------
+        // FORM BUTTONS
+        // -----------------------------------------------------
 
         HBox formButtonBox =
                 new HBox(10);
@@ -675,28 +800,63 @@ public class CategoryManagementScreen {
                 clearButton
         );
 
-        formBox.getChildren().addAll(
-                nameBox,
-                descriptionBox,
+        formCard.getChildren().addAll(
+                formTitle,
+                formSubtitle,
+                formGrid,
                 formButtonBox,
                 selectedCategoryLabel
         );
 
-        // -----------------------------------------------------
-        // SEARCH SECTION
-        // -----------------------------------------------------
+        // =====================================================
+        // SEARCH CARD
+        // =====================================================
 
-        VBox searchBox =
-                new VBox(8);
+        VBox searchCard =
+                new VBox(12);
 
-        Label searchLabel =
+        searchCard.setPadding(
+                new Insets(20)
+        );
+
+        searchCard.setStyle(
+                "-fx-background-color: white;"
+                + "-fx-background-radius: 10px;"
+                + "-fx-border-color: #e2e8f0;"
+                + "-fx-border-radius: 10px;"
+        );
+
+        Label searchTitle =
                 new Label(
                         "Search Categories"
                 );
 
-        searchLabel.setStyle(
-                "-fx-font-weight: bold;"
-                + "-fx-text-fill: #374151;"
+        searchTitle.setStyle(
+                "-fx-font-size: 17px;"
+                + "-fx-font-weight: bold;"
+                + "-fx-text-fill: #0f172a;"
+        );
+
+        Label searchSubtitle =
+                new Label(
+                        "Search for categories using the name or description"
+                );
+
+        searchSubtitle.setStyle(
+                "-fx-font-size: 12px;"
+                + "-fx-text-fill: #64748b;"
+        );
+
+        HBox searchControls =
+                new HBox(12);
+
+        searchControls.setAlignment(
+                Pos.CENTER_LEFT
+        );
+
+        HBox.setHgrow(
+                searchField,
+                Priority.ALWAYS
         );
 
         Button showAllButton =
@@ -704,14 +864,16 @@ public class CategoryManagementScreen {
                         "Show All"
                 );
 
-        showAllButton.setPrefHeight(38);
+        showAllButton.setPrefHeight(40);
 
         showAllButton.setPrefWidth(110);
 
         showAllButton.setStyle(
-                "-fx-background-color: #374151;"
+                "-fx-background-color: #334155;"
                 + "-fx-text-fill: white;"
+                + "-fx-font-size: 13px;"
                 + "-fx-font-weight: bold;"
+                + "-fx-background-radius: 6px;"
                 + "-fx-cursor: hand;"
         );
 
@@ -722,38 +884,54 @@ public class CategoryManagementScreen {
             loadAllCategories();
         });
 
-        HBox searchControls =
-                new HBox(10);
-
-        searchControls.setAlignment(
-                Pos.CENTER_LEFT
-        );
-
         searchControls.getChildren().addAll(
                 searchField,
                 showAllButton
         );
 
-        searchBox.getChildren().addAll(
-                searchLabel,
+        searchCard.getChildren().addAll(
+                searchTitle,
+                searchSubtitle,
                 searchControls
         );
 
-        // -----------------------------------------------------
-        // STATUS SECTION
-        // -----------------------------------------------------
+        // =====================================================
+        // STATUS CARD
+        // =====================================================
 
-        VBox statusBox =
-                new VBox(8);
+        VBox statusCard =
+                new VBox(12);
 
-        Label statusLabel =
+        statusCard.setPadding(
+                new Insets(20)
+        );
+
+        statusCard.setStyle(
+                "-fx-background-color: white;"
+                + "-fx-background-radius: 10px;"
+                + "-fx-border-color: #e2e8f0;"
+                + "-fx-border-radius: 10px;"
+        );
+
+        Label statusTitle =
                 new Label(
                         "Category Status"
                 );
 
-        statusLabel.setStyle(
-                "-fx-font-weight: bold;"
-                + "-fx-text-fill: #374151;"
+        statusTitle.setStyle(
+                "-fx-font-size: 17px;"
+                + "-fx-font-weight: bold;"
+                + "-fx-text-fill: #0f172a;"
+        );
+
+        Label statusSubtitle =
+                new Label(
+                        "Select a category from the table before changing its status"
+                );
+
+        statusSubtitle.setStyle(
+                "-fx-font-size: 12px;"
+                + "-fx-text-fill: #64748b;"
         );
 
         HBox statusButtons =
@@ -768,39 +946,128 @@ public class CategoryManagementScreen {
                 deactivateButton
         );
 
-        statusBox.getChildren().addAll(
-                statusLabel,
+        statusCard.getChildren().addAll(
+                statusTitle,
+                statusSubtitle,
                 statusButtons
         );
 
-        // -----------------------------------------------------
-        // ADD CONTENT TO SCREEN
-        // -----------------------------------------------------
+        // =====================================================
+        // TABLE CARD
+        // =====================================================
 
-        content.getChildren().addAll(
-                backButton,
-                titleLabel,
-                subtitleLabel,
-                formBox,
-                searchBox,
-                statusBox,
+        VBox tableCard =
+                new VBox(12);
+
+        tableCard.setPadding(
+                new Insets(20)
+        );
+
+        tableCard.setStyle(
+                "-fx-background-color: white;"
+                + "-fx-background-radius: 10px;"
+                + "-fx-border-color: #e2e8f0;"
+                + "-fx-border-radius: 10px;"
+        );
+
+        Label tableTitle =
+                new Label(
+                        "Category List"
+                );
+
+        tableTitle.setStyle(
+                "-fx-font-size: 17px;"
+                + "-fx-font-weight: bold;"
+                + "-fx-text-fill: #0f172a;"
+        );
+
+        Label tableSubtitle =
+                new Label(
+                        "Select a row to view or edit category information"
+                );
+
+        tableSubtitle.setStyle(
+                "-fx-font-size: 12px;"
+                + "-fx-text-fill: #64748b;"
+        );
+
+        VBox.setVgrow(
+                categoryTable,
+                Priority.ALWAYS
+        );
+
+        tableCard.getChildren().addAll(
+                tableTitle,
+                tableSubtitle,
                 categoryTable
         );
 
-        root.setCenter(content);
+        // =====================================================
+        // ADD ALL CONTENT
+        // =====================================================
+
+        mainContent.getChildren().addAll(
+                formCard,
+                searchCard,
+                statusCard,
+                tableCard
+        );
+
+        VBox.setVgrow(
+                tableCard,
+                Priority.ALWAYS
+        );
+
+        // =====================================================
+        // SCROLL PANE
+        // =====================================================
+
+        ScrollPane scrollPane =
+                new ScrollPane();
+
+        scrollPane.setContent(
+                mainContent
+        );
+
+        scrollPane.setFitToWidth(true);
+
+        scrollPane.setFitToHeight(false);
+
+        scrollPane.setHbarPolicy(
+                ScrollPane.ScrollBarPolicy.NEVER
+        );
+
+        scrollPane.setVbarPolicy(
+                ScrollPane.ScrollBarPolicy.AS_NEEDED
+        );
+
+        scrollPane.setStyle(
+                "-fx-background-color: #f1f5f9;"
+                + "-fx-border-color: transparent;"
+        );
+
+        root.setCenter(
+                scrollPane
+        );
+
+        // =====================================================
+        // SCENE
+        // =====================================================
 
         Scene scene =
                 new Scene(
                         root,
-                        1050,
-                        720
+                        1150,
+                        800
                 );
 
         stage.setTitle(
                 "Category Management - Scrap Business System"
         );
 
-        stage.setScene(scene);
+        stage.setScene(
+                scene
+        );
 
         stage.setResizable(true);
 
@@ -1205,5 +1472,40 @@ public class CategoryManagementScreen {
         );
 
         alert.showAndWait();
+    }
+
+    // =========================================================
+    // FORM GRID COLUMN HELPER
+    // =========================================================
+
+    private static class ColumnConstraintsHelper {
+
+        private static void configureFormColumns(
+                GridPane grid
+        ) {
+
+            javafx.scene.layout.ColumnConstraints firstColumn =
+                    new javafx.scene.layout.ColumnConstraints();
+
+            javafx.scene.layout.ColumnConstraints secondColumn =
+                    new javafx.scene.layout.ColumnConstraints();
+
+            firstColumn.setPercentWidth(50);
+
+            secondColumn.setPercentWidth(50);
+
+            firstColumn.setHgrow(
+                    Priority.ALWAYS
+            );
+
+            secondColumn.setHgrow(
+                    Priority.ALWAYS
+            );
+
+            grid.getColumnConstraints().addAll(
+                    firstColumn,
+                    secondColumn
+            );
+        }
     }
 }
