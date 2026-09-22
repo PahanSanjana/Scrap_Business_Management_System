@@ -7,16 +7,18 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Separator;
 
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
-
-import javafx.scene.paint.Color;
 
 import javafx.stage.Stage;
 
@@ -35,7 +37,10 @@ public class AdminDashboard {
      */
     public void show(Stage stage) {
 
-        // Main dashboard title
+        // =====================================================
+        // HEADER TITLE
+        // =====================================================
+
         Label titleLabel = new Label(
                 "Scrap Business Management System"
         );
@@ -46,7 +51,10 @@ public class AdminDashboard {
                 + "-fx-text-fill: white;"
         );
 
-        // Admin label
+        // =====================================================
+        // ADMIN LABEL
+        // =====================================================
+
         Label adminLabel = new Label(
                 "Administrator Panel"
         );
@@ -56,10 +64,14 @@ public class AdminDashboard {
                 + "-fx-text-fill: #dbeafe;"
         );
 
-        // User information
+        // =====================================================
+        // USER INFORMATION
+        // =====================================================
+
+        String fullName = authenticatedUser.getFullName();
+
         Label userLabel = new Label(
-                "Logged in as: "
-                        + authenticatedUser.getFullName()
+                "Logged in as: " + fullName
         );
 
         userLabel.setStyle(
@@ -67,7 +79,10 @@ public class AdminDashboard {
                 + "-fx-text-fill: #e5e7eb;"
         );
 
-        // Logout button
+        // =====================================================
+        // LOGOUT BUTTON
+        // =====================================================
+
         Button logoutButton = new Button("Logout");
 
         logoutButton.setPrefWidth(100);
@@ -78,9 +93,13 @@ public class AdminDashboard {
                 + "-fx-text-fill: white;"
                 + "-fx-font-weight: bold;"
                 + "-fx-cursor: hand;"
+                + "-fx-background-radius: 6;"
         );
 
-        // Header text container
+        // =====================================================
+        // HEADER TEXT CONTAINER
+        // =====================================================
+
         VBox headerTextContainer = new VBox(4);
 
         headerTextContainer.getChildren().addAll(
@@ -89,11 +108,14 @@ public class AdminDashboard {
                 userLabel
         );
 
-        // Header
+        // =====================================================
+        // HEADER
+        // =====================================================
+
         HBox header = new HBox();
 
         header.setAlignment(Pos.CENTER_LEFT);
-        header.setPadding(new Insets(20));
+        header.setPadding(new Insets(20, 25, 20, 25));
         header.setSpacing(20);
 
         header.setStyle(
@@ -102,7 +124,7 @@ public class AdminDashboard {
 
         HBox.setHgrow(
                 headerTextContainer,
-                javafx.scene.layout.Priority.ALWAYS
+                Priority.ALWAYS
         );
 
         header.getChildren().addAll(
@@ -110,7 +132,10 @@ public class AdminDashboard {
                 logoutButton
         );
 
-        // Welcome heading
+        // =====================================================
+        // WELCOME HEADING
+        // =====================================================
+
         Label welcomeLabel = new Label(
                 "Admin Dashboard"
         );
@@ -121,10 +146,13 @@ public class AdminDashboard {
                 + "-fx-text-fill: #111827;"
         );
 
-        // Welcome description
+        // =====================================================
+        // WELCOME DESCRIPTION
+        // =====================================================
+
         Label descriptionLabel = new Label(
-                "Manage all purchasing, inventory, sales, "
-                        + "customers, suppliers, and system settings."
+                "Manage purchasing, inventory, sales, customers, "
+                + "suppliers, materials, categories, and system settings."
         );
 
         descriptionLabel.setWrapText(true);
@@ -134,16 +162,30 @@ public class AdminDashboard {
                 + "-fx-text-fill: #4b5563;"
         );
 
-        // Dashboard cards
+        // =====================================================
+        // DASHBOARD GRID
+        // =====================================================
+
         GridPane dashboardGrid = new GridPane();
 
         dashboardGrid.setHgap(18);
         dashboardGrid.setVgap(18);
-        dashboardGrid.setPadding(new Insets(20, 0, 20, 0));
+        dashboardGrid.setPadding(
+                new Insets(20, 0, 20, 0)
+        );
+
+        // =====================================================
+        // DASHBOARD BUTTONS
+        // =====================================================
 
         Button materialButton = createDashboardButton(
                 "Material Management",
-                "Manage scrap materials and categories"
+                "Manage scrap materials and material details"
+        );
+
+        Button categoryButton = createDashboardButton(
+                "Category Management",
+                "Create and manage material categories"
         );
 
         Button purchasingButton = createDashboardButton(
@@ -186,93 +228,167 @@ public class AdminDashboard {
                 "Manage system settings and administration"
         );
 
-        // Add buttons to the dashboard grid
+        // =====================================================
+        // ADD BUTTONS TO GRID
+        // =====================================================
+
+        // Row 1
         dashboardGrid.add(materialButton, 0, 0);
-        dashboardGrid.add(purchasingButton, 1, 0);
+        dashboardGrid.add(categoryButton, 1, 0);
 
-        dashboardGrid.add(inventoryButton, 0, 1);
-        dashboardGrid.add(supplierButton, 1, 1);
+        // Row 2
+        dashboardGrid.add(purchasingButton, 0, 1);
+        dashboardGrid.add(inventoryButton, 1, 1);
 
-        dashboardGrid.add(customerButton, 0, 2);
-        dashboardGrid.add(salesButton, 1, 2);
+        // Row 3
+        dashboardGrid.add(supplierButton, 0, 2);
+        dashboardGrid.add(customerButton, 1, 2);
 
-        dashboardGrid.add(reportsButton, 0, 3);
-        dashboardGrid.add(usersButton, 1, 3);
+        // Row 4
+        dashboardGrid.add(salesButton, 0, 3);
+        dashboardGrid.add(reportsButton, 1, 3);
 
-        dashboardGrid.add(settingsButton, 0, 4);
+        // Row 5
+        dashboardGrid.add(usersButton, 0, 4);
+        dashboardGrid.add(settingsButton, 1, 4);
 
-        // Feature button actions
+        // =====================================================
+        // MATERIAL MANAGEMENT ACTION
+        // =====================================================
+
         materialButton.setOnAction(event -> {
 
-    CategoryManagementScreen categoryScreen =
-            new CategoryManagementScreen(
-                    authenticatedUser
-            );
+            MaterialManagementScreen materialScreen =
+                    new MaterialManagementScreen(
+                            authenticatedUser
+                    );
 
-    categoryScreen.show(stage);
-});
+            materialScreen.show(stage);
+        });
+
+        // =====================================================
+        // CATEGORY MANAGEMENT ACTION
+        // =====================================================
+
+        categoryButton.setOnAction(event -> {
+
+            CategoryManagementScreen categoryScreen =
+                    new CategoryManagementScreen(
+                            authenticatedUser
+                    );
+
+            categoryScreen.show(stage);
+        });
+
+        // =====================================================
+        // PURCHASING MANAGEMENT ACTION
+        // =====================================================
 
         purchasingButton.setOnAction(event -> {
+
             showInformation(
                     "Purchasing Management",
                     "This feature will be implemented later."
             );
         });
 
+        // =====================================================
+        // INVENTORY MANAGEMENT ACTION
+        // =====================================================
+
         inventoryButton.setOnAction(event -> {
+
             showInformation(
                     "Inventory Management",
                     "This feature will be implemented later."
             );
         });
 
+        // =====================================================
+        // SUPPLIER MANAGEMENT ACTION
+        // =====================================================
+
         supplierButton.setOnAction(event -> {
+
             showInformation(
                     "Supplier Management",
                     "This feature will be implemented later."
             );
         });
 
+        // =====================================================
+        // CUSTOMER MANAGEMENT ACTION
+        // =====================================================
+
         customerButton.setOnAction(event -> {
+
             showInformation(
                     "Customer Management",
                     "This feature will be implemented later."
             );
         });
 
+        // =====================================================
+        // SALES MANAGEMENT ACTION
+        // =====================================================
+
         salesButton.setOnAction(event -> {
+
             showInformation(
                     "Sales Management",
                     "This feature will be implemented later."
             );
         });
 
+        // =====================================================
+        // REPORTS ACTION
+        // =====================================================
+
         reportsButton.setOnAction(event -> {
+
             showInformation(
                     "Reports",
                     "This feature will be implemented later."
             );
         });
 
+        // =====================================================
+        // USER MANAGEMENT ACTION
+        // =====================================================
+
         usersButton.setOnAction(event -> {
+
             showInformation(
                     "User Management",
                     "This feature will be implemented later."
             );
         });
 
+        // =====================================================
+        // ADMIN SETTINGS ACTION
+        // =====================================================
+
         settingsButton.setOnAction(event -> {
+
             showInformation(
                     "Admin Settings",
                     "This feature will be implemented later."
             );
         });
 
-        // Main content
+        // =====================================================
+        // MAIN CONTENT
+        // =====================================================
+
         VBox content = new VBox(10);
 
-        content.setPadding(new Insets(30));
-        content.setAlignment(Pos.TOP_LEFT);
+        content.setPadding(
+                new Insets(30)
+        );
+
+        content.setAlignment(
+                Pos.TOP_LEFT
+        );
 
         content.getChildren().addAll(
                 welcomeLabel,
@@ -281,32 +397,54 @@ public class AdminDashboard {
                 dashboardGrid
         );
 
-        // Scroll-friendly central container
+        // =====================================================
+        // ROOT LAYOUT
+        // =====================================================
+
         BorderPane root = new BorderPane();
 
         root.setTop(header);
-        root.setCenter(content);
+
+        // Use a ScrollPane for smaller screens
+        ScrollPane scrollPane = new ScrollPane(content);
+
+        scrollPane.setFitToWidth(true);
+        scrollPane.setStyle(
+                "-fx-background: #f8fafc;"
+        );
+
+        root.setCenter(scrollPane);
 
         root.setStyle(
                 "-fx-background-color: #f8fafc;"
         );
 
-        // Logout action
+        // =====================================================
+        // LOGOUT ACTION
+        // =====================================================
+
         logoutButton.setOnAction(event -> {
 
-            LoginScreen loginScreen = new LoginScreen();
+            LoginScreen loginScreen =
+                    new LoginScreen();
 
             loginScreen.show(stage);
         });
 
-        // Scene
+        // =====================================================
+        // SCENE
+        // =====================================================
+
         Scene scene = new Scene(
                 root,
                 1100,
                 750
         );
 
-        // Stage configuration
+        // =====================================================
+        // STAGE CONFIGURATION
+        // =====================================================
+
         stage.setTitle(
                 "Scrap Business Management System - Admin Dashboard"
         );
@@ -349,7 +487,9 @@ public class AdminDashboard {
 
         VBox buttonContent = new VBox(6);
 
-        buttonContent.setAlignment(Pos.CENTER_LEFT);
+        buttonContent.setAlignment(
+                Pos.CENTER_LEFT
+        );
 
         buttonContent.getChildren().addAll(
                 titleLabel,
@@ -362,7 +502,9 @@ public class AdminDashboard {
                 javafx.scene.control.ContentDisplay.GRAPHIC_ONLY
         );
 
-        button.setAlignment(Pos.CENTER_LEFT);
+        button.setAlignment(
+                Pos.CENTER_LEFT
+        );
 
         button.setPrefWidth(340);
         button.setPrefHeight(100);
@@ -390,10 +532,9 @@ public class AdminDashboard {
             String message
     ) {
 
-        javafx.scene.control.Alert alert =
-                new javafx.scene.control.Alert(
-                        javafx.scene.control.Alert.AlertType.INFORMATION
-                );
+        Alert alert = new Alert(
+                Alert.AlertType.INFORMATION
+        );
 
         alert.setTitle(title);
         alert.setHeaderText(null);
